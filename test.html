@@ -1,0 +1,51 @@
+<html>
+   <head>
+      <title>Google Charts Tutorial</title>
+      <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript" src = "https://www.google.com/jsapi">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['treemap']});     
+      </script>
+   </head>
+   
+   <body>
+      <div id = "container" style = "width: 850px; height: 700px; margin: 0 auto">
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+            var data = google.visualization.arrayToDataTable([
+               ['Project', 'Parent', 'Effort', 'increase/decrease (color)'],
+               ['Types of Project',    null,                 0,                               2],
+               ['Create Pipelines',   'Types of Project',             0,                               5],
+               ['Data Management',   'Types of Project',             0,                               1],
+               ['Develop Tools',      'Types of Project',             0,                               0],
+               ['Data Analysis & Interpretation', 'Types of Project',             0,                               0],
+               
+               ['Seurat for scRNASEQ',       'Create Pipelines',            52,                              31],
+               ['Phenotype reproducibility',    'Data Management',            16,                              3],
+               ['Crohns gene priortization',    'Develop Tools',            24,                              -23],
+               
+               ['Variant interpretation for myopathies',    'Data Analysis & Interpretation',             42,                              -11],
+
+            ]);
+            var options = {      
+               minColor: 'aqua',
+               midColor: 'grey',
+               maxColor: 'pink',
+               headerHeight: 35,
+               fontColor: 'black',
+               showScale: true
+            };
+                  
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.TreeMap(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+   </body>
+</html>
